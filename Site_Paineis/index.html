@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Central de Indicadores Consolidados</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Inter, system-ui, sans-serif; }
+  body { background: #070d19; color: #f8fafc; height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+  .topbar {
+    background: #0b1222;
+    border-bottom: 1px solid #1e2d4a;
+    padding: 10px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    z-index: 10;
+  }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 15px; color: #e2e8f0; }
+  .badge { background: #3b82f6; color: #fff; font-size: 11px; padding: 3px 8px; border-radius: 6px; font-weight: 800; }
+  .nav-pills { display: flex; gap: 8px; }
+  .nav-btn {
+    background: #131e36; color: #94a3b8; border: 1px solid #1e2d4a;
+    padding: 8px 18px; border-radius: 9px; font-size: 13px; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .nav-btn:hover { color: #fff; border-color: #3b82f6; }
+  .nav-btn.active { background: #3b82f6; color: #fff; border-color: #3b82f6; box-shadow: 0 4px 12px rgba(59,130,246,0.35); }
+  iframe { flex: 1; width: 100%; border: none; background: #070d19; }
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="logo"><span class="badge">PORTAL</span> Central de Indicadores</div>
+    <div class="nav-pills">
+      <button class="nav-btn active" onclick="trocarPainel('Painel_Operacional.html', this)">Painel Operacional (Linhas)</button>
+      <button class="nav-btn" onclick="trocarPainel('Painel_Geral.html', this)">Painel Geral (Ocorr&ecirc;ncias)</button>
+    </div>
+  </div>
+
+  <iframe id="framePainel" src="Painel_Operacional.html"></iframe>
+
+  <script>
+    function trocarPainel(arquivo, botao) {
+      document.getElementById('framePainel').src = arquivo;
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      botao.classList.add('active');
+    }
+  </script>
+</body>
+</html>
